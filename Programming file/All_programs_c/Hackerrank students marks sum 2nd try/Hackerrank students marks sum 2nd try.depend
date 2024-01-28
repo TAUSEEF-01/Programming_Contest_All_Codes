@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1664042667 source:d:\programming file\all programs\hackerrank students marks sum 2nd try\main.c
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<stdlib.h>
+

@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1662834688 source:d:\programming file\hello world\hackerrank for loop easy\hackerrank for loop easy\main.c
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<stdlib.h>
+

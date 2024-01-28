@@ -1,0 +1,46 @@
+1.
+
+for(int i = 0; i < 10; i++) {
+    ...
+}
+
+## note: initialization; condition; increment/ decrement
+
+
+2. How To Extract Digits From A Number in C:
+
+   int n, b, c, d, e, f, p, q, x, y, z, sum;
+
+
+    x= n%10 ;
+    b= n/10 ;
+    y= b%10 ;
+    d= b/10 ;
+    z= d%10 ;
+    e= d/10 ;
+    p= e%10 ;
+    f= e/10 ;
+    q= f%10 ;
+
+3. int *ptr= &arr[0];   // used & before arr[0]
+
+   int *ptr= arr; // both r same
+
+10. void prinNumbers(int arr[], int n) // (1st ta holo array, 2nd ta holo array size, or number of elements)
+
+11. Character pointer can be modified but character array cannot be modified!!
+
+12. Note: You can also use cin and cout instead of scanf and printf; 
+    however, if you are taking a million numbers as input and printing a million lines,
+    it is faster to use scanf and printf.
+
+13. for getting length of a string(taken input):  (vvi)
+	
+	char str[200];
+	cin>> str;
+    	cout<< strlen(str);
+
+14.
+
+
+

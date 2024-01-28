@@ -1,0 +1,1 @@
+{"name":"Local: set","url":"d:\\Programming file\\Stl c++\\set.cpp","tests":[{"id":1679856724652,"input":"10\n9 9 4 7 2 4 10 2 9 10","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\Stl c++\\set.cpp","group":"local","local":true}

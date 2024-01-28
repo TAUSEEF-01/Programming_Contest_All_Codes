@@ -1,0 +1,1 @@
+{"name":"Local: AND 0, Sum Big","url":"d:\\Programming file\\All programs\\AND 0, Sum Big.cpp","tests":[{"id":1689674404203,"input":"2\n2 2\n100000 20","output":"4\n226732710"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\All programs\\AND 0, Sum Big.cpp","group":"local","local":true}

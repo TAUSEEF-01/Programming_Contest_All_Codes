@@ -1,0 +1,1 @@
+{"name":"Local: Short Sort","url":"d:\\Programming file\\All programs\\Short Sort.cpp","tests":[{"id":1695307082875,"input":"6\nabc\nacb\nbac\nbca\ncab\ncba","output":"YES\nYES\nYES\nNO\nNO\nYES"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\All programs\\Short Sort.cpp","group":"local","local":true}

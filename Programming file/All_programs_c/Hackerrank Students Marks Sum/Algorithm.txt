@@ -1,0 +1,22 @@
+1. number of students ----> n > odd or even??
+
+2. n ----> odd ---> sum= marks0 + ...2+.....4
+	   even ----> sum= marks1+ .....3+.....5
+
+3. gender input ------> b or g ----> represent with even or odd
+
+4. n%2 != 0
+   n%2 == 0
+
+5. if n==1 && g -----> marks does not exist
+
+6. if n==1 && b -----> marks n=1 er tai
+
+7. scnaf > number of inpt = to the number of n
+
+8. n== even printf 0+2+4+......even position numbers
+
+9. n== odd printf 1+3+5+.......odd position numbers
+
+10. each time loop use korle previous er tar sathe sum korte hobe!
+

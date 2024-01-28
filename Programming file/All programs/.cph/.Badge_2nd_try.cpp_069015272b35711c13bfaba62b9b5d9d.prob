@@ -1,0 +1,1 @@
+{"name":"Local: Badge_2nd_try","url":"d:\\Programming file\\All programs\\Badge_2nd_try.cpp","tests":[{"id":1689774790150,"input":"3\n2 3 2\n","output":"2 2 3 \n"},{"id":1689774802293,"input":"3\n1 2 3","output":"1 2 3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\All programs\\Badge_2nd_try.cpp","group":"local","local":true}

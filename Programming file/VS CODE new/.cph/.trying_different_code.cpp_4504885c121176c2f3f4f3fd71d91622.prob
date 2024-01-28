@@ -1,0 +1,1 @@
+{"name":"Local: trying_different_code","url":"d:\\Programming file\\VS CODE new\\trying_different_code.cpp","tests":[{"id":1664817688712,"input":"4\n1 2 3 4","output":"3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\VS CODE new\\trying_different_code.cpp","group":"local","local":true}

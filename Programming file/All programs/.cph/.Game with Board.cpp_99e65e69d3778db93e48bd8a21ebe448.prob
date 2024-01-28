@@ -1,0 +1,1 @@
+{"name":"Local: Game with Board","url":"d:\\Programming file\\All programs\\Game with Board.cpp","tests":[{"id":1686581624159,"input":"2\n3\n6","output":"Bob\nAlice"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\All programs\\Game with Board.cpp","group":"local","local":true}

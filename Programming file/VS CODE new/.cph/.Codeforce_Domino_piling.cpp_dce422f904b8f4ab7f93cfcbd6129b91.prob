@@ -1,0 +1,1 @@
+{"name":"Local: Codeforce_Domino_piling","url":"d:\\Programming file\\VS CODE new\\Codeforce_Domino_piling.cpp","tests":[{"id":1664975930410,"input":"2 4\n","output":"4\n"},{"id":1664975949900,"input":"3 3","output":"4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\VS CODE new\\Codeforce_Domino_piling.cpp","group":"local","local":true}

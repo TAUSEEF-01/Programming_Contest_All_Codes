@@ -1,0 +1,1 @@
+{"name":"Local: Not a Substring","url":"d:\\Programming file\\All programs\\Not a Substring.cpp","tests":[{"id":1692315598746,"input":"4\n)(\n(()\n()\n))()","output":"YES\n(())\nYES\n()()()\nNO\nYES\n()(()())"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\All programs\\Not a Substring.cpp","group":"local","local":true}

@@ -1,0 +1,9 @@
+<string.h>
+
+1. strlen(str)
+
+2. strcpy(newStr, oldStr) //copies value from old string to new string
+
+3. strcat(firstStr, senStr)  // concatenates first string with second string
+
+4. strcmp(firstStr, secStr)  // compares 2 strings & returns a value

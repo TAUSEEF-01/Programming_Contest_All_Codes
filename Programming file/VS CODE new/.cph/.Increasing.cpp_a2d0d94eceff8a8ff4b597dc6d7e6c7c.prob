@@ -1,0 +1,1 @@
+{"name":"Local: Increasing","url":"d:\\Programming file\\VS CODE new\\Increasing.cpp","tests":[{"id":1665673327573,"input":"5\n4\n1 1 1 1\n5\n8 7 1 3 4\n1\n5\n4\n1 1 1 1\n3\n2 1 2","output":"NO\nYES\nYES\nNO\nNO"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\VS CODE new\\Increasing.cpp","group":"local","local":true}

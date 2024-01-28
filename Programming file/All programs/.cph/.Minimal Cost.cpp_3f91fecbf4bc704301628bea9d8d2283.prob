@@ -1,0 +1,1 @@
+{"name":"Local: Minimal Cost","url":"d:\\Programming file\\All programs\\Minimal Cost.cpp","tests":[{"id":1680442323253,"input":"3\n2 3 4\n2 2\n2 3 4\n3 2\n2 4 3\n3 2","output":"7\n3\n3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\All programs\\Minimal Cost.cpp","group":"local","local":true}

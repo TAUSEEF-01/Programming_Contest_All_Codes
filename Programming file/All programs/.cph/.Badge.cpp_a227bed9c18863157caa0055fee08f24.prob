@@ -1,0 +1,1 @@
+{"name":"Local: Badge","url":"d:\\Programming file\\All programs\\Badge.cpp","tests":[{"id":1689433343661,"input":"3\n2 3 2\n","output":"2 2 3 \n"},{"id":1689433350501,"input":"3\n1 2 3","output":"1 2 3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\All programs\\Badge.cpp","group":"local","local":true}

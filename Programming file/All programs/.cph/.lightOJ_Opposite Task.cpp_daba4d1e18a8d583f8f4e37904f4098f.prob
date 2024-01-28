@@ -1,0 +1,1 @@
+{"name":"Local: lightOJ_Opposite Task","url":"d:\\Programming file\\All programs\\lightOJ_Opposite Task.cpp","tests":[{"id":1679941953708,"input":"3\n10\n7\n7\n","output":"0 10\n0 7\n1 6\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\All programs\\lightOJ_Opposite Task.cpp","group":"local","local":true}

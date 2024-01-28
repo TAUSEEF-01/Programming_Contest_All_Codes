@@ -1,0 +1,1 @@
+{"name":"Local: Codeforce Elevator problem","url":"d:\\Programming file\\VS CODE new\\Codeforce Elevator problem.c","tests":[{"id":1664357092324,"input":"3\n1 2 3\n3 1 2\n3 2 1","output":"1\n3\n2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\VS CODE new\\Codeforce Elevator problem.c","group":"local","local":true}

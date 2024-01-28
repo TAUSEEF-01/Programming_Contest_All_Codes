@@ -1,0 +1,1 @@
+{"name":"Local: Divisor Chain","url":"d:\\Programming file\\All programs\\Divisor Chain.cpp","tests":[{"id":1693066706463,"input":"3\n3\n5\n14","output":"3\n3 2 1 \n4\n5 4 2 1 \n6\n14 12 8 4 2 1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\All programs\\Divisor Chain.cpp","group":"local","local":true}

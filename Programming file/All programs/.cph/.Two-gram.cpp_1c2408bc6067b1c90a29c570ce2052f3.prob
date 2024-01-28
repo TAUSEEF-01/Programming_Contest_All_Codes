@@ -1,0 +1,1 @@
+{"name":"Local: Two-gram","url":"d:\\Programming file\\All programs\\Two-gram.cpp","tests":[{"id":1688635754494,"input":"7\nABACABA","output":"BA"},{"id":1688635764407,"input":"5\nZZZAA","output":"ZZ"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\All programs\\Two-gram.cpp","group":"local","local":true}

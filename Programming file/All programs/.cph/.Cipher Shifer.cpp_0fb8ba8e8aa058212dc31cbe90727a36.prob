@@ -1,0 +1,1 @@
+{"name":"Local: Cipher Shifer","url":"d:\\Programming file\\All programs\\Cipher Shifer.cpp","tests":[{"id":1686150600329,"input":"3\n8\nabacabac\n5\nqzxcq\n20\nccooddeeffoorrcceess","output":"ac\nq\ncodeforces"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\All programs\\Cipher Shifer.cpp","group":"local","local":true}

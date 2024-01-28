@@ -1,0 +1,1 @@
+{"name":"Local: Helpful_Maths_2nd_try","url":"d:\\Programming file\\VS CODE new\\Helpful_Maths_2nd_try.cpp","tests":[{"id":1665822082232,"input":"1+1+3+2+3","output":"1+1+2+3+3"},{"id":1665822111348,"input":"","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\VS CODE new\\Helpful_Maths_2nd_try.cpp","group":"local","local":true}

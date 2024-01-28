@@ -1,0 +1,1 @@
+{"name":"Local: SRBD1","url":"d:\\Programming file\\All programs\\SRBD1.cpp","tests":[{"id":1695892939721,"input":"3\n5 1\n100 10\n6 9","output":"4\n128\n1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\All programs\\SRBD1.cpp","group":"local","local":true}

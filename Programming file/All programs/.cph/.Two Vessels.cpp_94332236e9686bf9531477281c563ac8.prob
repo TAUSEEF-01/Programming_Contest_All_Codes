@@ -1,0 +1,1 @@
+{"name":"Local: Two Vessels","url":"d:\\Programming file\\All programs\\Two Vessels.cpp","tests":[{"id":1694108676579,"input":"6\n3 7 2\n17 4 3\n17 17 1\n17 21 100\n1 100 1\n97 4 3","output":"1\n3\n0\n1\n50\n16"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Programming file\\All programs\\Two Vessels.cpp","group":"local","local":true}

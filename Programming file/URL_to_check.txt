@@ -1,0 +1,15 @@
+https://www.softwaretestinghelp.com/cpp-mathematical-functions/
+
+https://www.geeksforgeeks.org/c-mathematical-functions/
+
+https://stackoverflow.com/questions/64055977/loop-in-a-function-to-store-data-in-a-struct-in-c
+
+https://stackoverflow.com/questions/2146763/using-continue-in-a-switch-statement
+
+https://www.programiz.com/c-programming/c-dynamic-memory-allocation
+
+https://www.tutorialspoint.com/difference-between-array-and-pointers-in-c#:~:text=Array%20in%20C%20is%20used,can%20be%20navigated%20using%20pointer.
+
+
+https://codeforces.com/gym/101853/attachments/download/7292/statements.pdf
+
