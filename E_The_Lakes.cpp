@@ -1,5 +1,5 @@
 // accepted
-// https://codeforces.com/contest/1931/problem/F
+// https://codeforces.com/contest/1829/problem/E
 
 #include <bits/stdc++.h>
 
@@ -163,63 +163,60 @@ void setIO()
 #endif
 }
 
-const int MAXN = 2e5 + 10;
-vector<int> adj[MAXN];
-vector<int> color(MAXN);
-bool cycle = false;
+const int sz = 1e3 + 5;
+int a[sz][sz];
+bool vis[sz][sz];
 
-void dfs(int u) // detecting cycle in a directed graph
+int dx[] = {-1, 1, 0, 0};
+int dy[] = {0, 0, -1, 1};
+
+int n, m;
+
+int dfs(int i, int j)
 {
-    color[u] = 1;
-    for (auto &v : adj[u])
+    vis[i][j] = true;
+    int sum = a[i][j];
+
+    for (int k = 0; k < 4; k++)
     {
-        if (color[v] == 0)
+        int _dx = i + dx[k];
+        int _dy = j + dy[k];
+
+        if (_dx >= 0 && _dx < n && _dy >= 0 && _dy < m && !vis[_dx][_dy] && a[_dx][_dy] != 0)
         {
-            dfs(v);
-        }
-        if (color[v] == 1)
-        {
-            cycle = true;
+            sum += dfs(_dx, _dy);
         }
     }
-    color[u] = 2;
+
+    return sum;
 }
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
+    cin >> n >> m;
 
-    cycle = false;
-    for (int i = 0; i <= n; i++)
+    for (int i = 0; i < n; i++)
     {
-        adj[i].clear();
-        color[i] = 0;
-    }
-
-    vector<int> v(n);
-    for (int i = 0; i < k; i++)
-    {
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j < m; j++)
         {
-            cin >> v[j];
-        }
-        for (int j = 1; j < n - 1; j++)
-        {
-            adj[v[j]].push_back(v[j + 1]);
+            vis[i][j] = false;
+            cin >> a[i][j];
         }
     }
 
-    for (int i = 0; i <= n; i++)
+    int ans = 0;
+    for (int i = 0; i < n; i++)
     {
-        if (color[i] == 0)
-            dfs(i);
+        for (int j = 0; j < m; j++)
+        {
+            if (!vis[i][j] && a[i][j] != 0)
+            {
+                ans = max(ans, dfs(i, j));
+            }
+        }
     }
 
-    if (cycle)
-        cout << "NO\n";
-    else
-        cout << "YES\n";
+    cout << ans << endl;
 }
 
 int main()

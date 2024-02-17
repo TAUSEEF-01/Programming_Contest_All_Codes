@@ -1,5 +1,5 @@
 // accepted
-// https://codeforces.com/contest/1931/problem/F
+// https://codeforces.com/contest/1930/problem/C
 
 #include <bits/stdc++.h>
 
@@ -142,6 +142,7 @@ vector<T> &operator/=(vector<T> &fir, vector<T> sec)
     for (auto &x : a) \
         cin >> x;
 #define pb push_back
+#define all(a) a.begin(), a.end()
 #define asort(a) sort(all(a))
 #define amin(a) *min_element(all(a))
 #define amax(a) *max_element(all(a))
@@ -163,63 +164,28 @@ void setIO()
 #endif
 }
 
-const int MAXN = 2e5 + 10;
-vector<int> adj[MAXN];
-vector<int> color(MAXN);
-bool cycle = false;
-
-void dfs(int u) // detecting cycle in a directed graph
-{
-    color[u] = 1;
-    for (auto &v : adj[u])
-    {
-        if (color[v] == 0)
-        {
-            dfs(v);
-        }
-        if (color[v] == 1)
-        {
-            cycle = true;
-        }
-    }
-    color[u] = 2;
-}
-
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
 
-    cycle = false;
-    for (int i = 0; i <= n; i++)
+    vector<ll> a(n);
+    for (int i = 0; i < n; i++)
     {
-        adj[i].clear();
-        color[i] = 0;
+        cin >> a[i];
+        a[i] += i + 1;
     }
 
-    vector<int> v(n);
-    for (int i = 0; i < k; i++)
+    sort(a.begin(), a.end(), greater<>());
+    for (int i = 1; i < n; i++)
     {
-        for (int j = 0; j < n; j++)
-        {
-            cin >> v[j];
-        }
-        for (int j = 1; j < n - 1; j++)
-        {
-            adj[v[j]].push_back(v[j + 1]);
-        }
+        a[i] = min(a[i], a[i - 1] - 1);
     }
 
-    for (int i = 0; i <= n; i++)
-    {
-        if (color[i] == 0)
-            dfs(i);
-    }
+    for (auto &x : a)
+        cout << x << ' ';
 
-    if (cycle)
-        cout << "NO\n";
-    else
-        cout << "YES\n";
+    cout << endl;
 }
 
 int main()
