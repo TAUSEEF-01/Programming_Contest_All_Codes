@@ -163,7 +163,52 @@ void setIO()
 
 void solve()
 {
-    
+    ll n, m, x;
+    cin >> n >> m >> x;
+
+    ll curr_pos = 0;
+    vi store;
+
+    for (int i = 0; i < m; i++)
+    {
+        int a;
+        char ch;
+        cin >> a >> ch;
+
+        if (ch == '0')
+            curr_pos += a;
+        else if (ch == '1')
+            curr_pos -= a;
+        else
+        {
+            if (n % 2 != 0)
+            {
+                store.push_back(a);
+            }
+            else
+            {
+                if (a != n / 2)
+                    store.push_back(a);
+                else
+                    curr_pos += a;
+            }
+        }
+    }
+
+    if (store.size() == 0)
+    {
+        cout << 1 << endl;
+
+        if (curr_pos <= 0)
+            cout << (x + curr_pos) % n + n << endl;
+        else
+            cout << (x + curr_pos) % n << endl;
+    }
+    else
+    {
+        // cout << (1LL << (store.size() * 1LL)) << endl; 
+        
+    }
 }
 
 int main()

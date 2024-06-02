@@ -1,3 +1,6 @@
+// accepted
+// https://codeforces.com/contest/1955/problem/D
+
 #include <bits/stdc++.h>
 
 #include <ext/pb_ds/assoc_container.hpp>
@@ -167,51 +170,46 @@ void solve()
     cin >> n >> m >> k;
 
     vi a(n), b(m);
-    vi bb(1000007, 0);
+    map<int, int> aa, bb;
 
-    for (auto &x : a)
+    for (int i = 0; i < n; i++)
     {
-        cin >> x;
+        cin >> a[i];
+    }
+    for (int i = 0; i < m; i++)
+    {
+        cin >> b[i];
+        bb[b[i]]++;
     }
 
-    for (auto &x : b)
+    int ans = 0, curr = 0;
+    for (int i = 0; i < n; i++)
     {
-        cin >> x;
-        bb[x]++;
-    }
-
-    int ans = 0;
-    for (int i = 0; i <= n - m; i++)
-    {
-        int kk = k, pos = i;
-        vi aa(1000007, 0);
-
-        for (int j = i; j < i + m; j++)
+        if (i < m - 1)
         {
-            if (bb[a[j]] != 0 && bb[a[j]] > aa[a[j]])
-            {
-                aa[a[j]]++;
-                kk--;
-            }
-            else
-            {
-                if (pos != i)
-                    pos = j;
-            }
-            if(kk == 0)
-                break;
-        }
+            aa[a[i]]++;
 
-        if (kk <= 0)
-        {
-            ans++;
+            if (bb[a[i]] != 0 && aa[a[i]] <= bb[a[i]])
+                curr++;
         }
         else
         {
-            i = pos;
+            if (i >= m)
+            {
+                if (bb[a[i - m]] != 0 && aa[a[i - m]] <= bb[a[i - m]])
+                    curr--;
+
+                aa[a[i - m]]--;
+            }
+
+            aa[a[i]]++;
+
+            if (bb[a[i]] != 0 && aa[a[i]] <= bb[a[i]])
+                curr++;
+
+            if (curr >= k)
+                ans++;
         }
-        // cout << i << ' ' << ans << endl;
-        // cout << ans << ' ';
     }
 
     cout << ans << endl;

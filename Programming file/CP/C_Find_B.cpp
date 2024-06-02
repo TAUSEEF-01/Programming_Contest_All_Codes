@@ -1,3 +1,6 @@
+// accewpted
+// https://codeforces.com/contest/1923/problem/C
+
 #include <bits/stdc++.h>
 
 #include <ext/pb_ds/assoc_container.hpp>

@@ -1,3 +1,7 @@
+// accepted
+// https://codeforces.com/contest/1935/problem/B
+
+
 /*
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   ⠀⢀⡔⣻⠁ ⢀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⢀⣾⠳⢶⣦⠤⣀⠀⠀⠀⠀⠀⠀⠀⣾⢀⡇⡴⠋⣀⠴⣊⣩⣤⠶⠞⢹⣄⠀⠀⠀
@@ -217,197 +221,55 @@ void get_answer()
     int n;
     cin >> n;
 
-    vi a(n);
-    set<int> st;
-    map<int, vi> mv;
+    vector<int> a(n), pref(n, 0), suf(n, 0), cnt(n, 0);
+
+    int mn = 0;
     for (int i = 0; i < n; i++)
     {
         cin >> a[i];
-        st.insert(a[i]);
-        mv[a[i]].push_back(i);
     }
 
-    // cout << "pp\n";
-
-    if (is_sorted(all(a)) && st.size() == n)
+    for (int i = 1; i < n; i++)
     {
-        cout << -1 << endl;
-        return;
+        cnt[a[i - 1]]++;
+
+        while (cnt[mn])
+        {
+            mn++;
+        }
+
+        pref[i] = mn;
     }
 
-    int mn = *st.begin();
-    if (mn != 0)
+    cnt.assign(n, 0);
+    mn = 0;
+
+    for (int i = n - 1; i > 0; i--)
     {
-        cout << n << endl;
-        for (int i = 1; i <= n; i++)
+        cnt[a[i]]++;
+
+        while (cnt[mn])
         {
-            cout << i << ' ' << i << endl;
+            mn++;
         }
-        return;
+
+        suf[i] = mn;
     }
 
-    int part = (n + mv[mn].size() - 1) / mv[mn].size();
-
-    // int check = 1, lo = 0;//, pos = 0;
-    set<int> ans;
-    vi ind;
-
-    int i = 0;
-    // ind.push_back(i);
-    for (auto &pos : mv[mn])
+    for (int i = 1; i < n; i++)
     {
-        int lo = 0, j = pos;
-        // cout << i<< " " << j <<endl;
-        while (a[j] == lo && j >= i)
+        if (pref[i] == suf[i])
         {
-            // cout << a[j] << "p ";// << j << ' ';
-            j--, lo++;
+            cout << 2 << endl;
+            cout << 1 << " " << i << endl;
+            cout << i + 1 << " " << n << endl;
+            return;
         }
-        // cout << j << ' ';
-        if (j > i)
-        {
-            // cout << lo << "res " <<endl;
-            // ind.push_back(i);
-            ans.insert(lo);
-            i = pos;
-            ind.push_back(j + 1);
-            // cout << i <<"p ";
-            // cout << endl;
-            continue;
-        }
-        else
-        {
-            lo = 0;
-            ind.push_back(j + 1);
-        }
-
-        // cout << i << "q ";
-        while (a[i] == lo) // && pos > i)
-        {
-            // cout << a[i] << ' ';
-            i++, lo++;
-        }
-        i--;
-        // ind.push_back(i);
-        // cout << lo << "go " << endl;
-        ans.insert(lo);
-        // cout << endl;
-    }
-    ind.push_back(n);
-
-    // for(int i=0; i<n; i+=part)
-    // {
-    //     set<int> s;
-    //     // cout << a[i] << ' ';
-    //     // lo = 0;
-    //     for(int j=i; j<min(n, i+part); j++)
-    //     {
-    //         // if(a[j] == lo)
-    //         // {
-    //         //     lo++;
-    //         // }
-    //         // else
-    //         // {
-    //         //     ans.insert(lo);
-    //         //     lo=0;
-    //         // }
-
-    //         s.insert(a[j]);
-    //         // cout << a[j] << ' ';
-    //     }
-    //     // cout << endl;
-
-    //     int flag = 1;
-    //     for(auto &ss: s)
-    //     {
-    //         if(ss == lo)
-    //         {
-    //             lo++;
-    //         }
-    //         else
-    //         {
-    //             ans.insert(lo);
-    //             flag = 0;
-    //             lo = 0;
-    //             break;
-    //         }
-    //         cout << lo << ' ';
-    //     }
-
-    //     if(flag)
-    //     {
-    //         ans.insert(lo);
-    //         lo = 0;
-    //     }
-    //     cout << endl;
-    // }
-
-    if (ans.size() == 1)
-    {
-        // cout << part << endl;
-        // int i = 1;
-        // for(i=1; i<= n - part; i+=part)
-        // {
-        //     cout << i << ' ' << i + part - 1 << endl;
-        // }
-        // // if(i == n)
-        // // {
-        // //     return;
-        // // }
-        // // else
-        // // {
-        //     cout << i - part << ' ' << min(n, i+part) << endl;
-        //     return;
-        // // }
-        // cout << "YES\n";
-        // for(int i=0; i<2* part; i+= 2)
-        // {
-        //     cout << ind[i]+1 << " " << ind[i+1]+1 << endl;
-        // }
-
-        // for(int i=0; i<part; i++)
-        // {
-        //     cout << ind[i]+1 << ' ' << ind[i+1] <<endl;
-        // }
-
-        // for(auto &p: ind)
-        // cout << p << ' ';
-        int sz = ind.size();
-        cout << sz - 1 << endl;
-        for (int i = 0; i < sz - 1; i++)
-        {
-            // cout << ind[i] << ' ';
-            cout << ind[i] + 1 << ' ' << ind[i + 1] << endl;
-        }
-        // cout << endl;
-    }
-    else
-    {
-        cout << -1 << endl;
-        return;
     }
 
-    // int pos = 0;
-    // vi str;
-    // for(int i=0; i<n; i++)
-    // {
-    //     if(a[i] != pos)
-    //     {
-    //         str.push_back(i);
-    //         pos = 0;
-    //     }
-    //     else
-    //     {
-    //         pos++;
-    //     }
-    // }
-
-    // if(str.size()==0)
-    // {
-    //     cout << -1 << endl;
-    // }
-    // else if(n % )
+    cout << -1 << endl;
 }
+
 
 int main()
 {
