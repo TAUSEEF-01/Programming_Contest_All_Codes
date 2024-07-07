@@ -20,7 +20,7 @@ using vs = vector<string>;
 const ll N = 1e9 + 7, inf = 1e18;
 const double pi = acos(-1);
 
-void solve()
+void solve1()
 {
     int n;
     cin >> n;
