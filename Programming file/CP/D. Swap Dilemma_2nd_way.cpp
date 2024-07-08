@@ -1,5 +1,6 @@
 // accepted
 
+
 #include <bits/stdc++.h>
 
 #include <ext/pb_ds/assoc_container.hpp>
@@ -163,83 +164,72 @@ void setIO()
 #endif
 }
 
-const int N = 1e5 + 5;
-vi divisors[N];
-
-void init()
+int parity(const vi &a)
 {
-    for (int i = 1; i < N; i++)
+    int n = a.size();
+    int parity = n % 2;
+
+    vb vis(n + 1, false);
+
+    for (int i = 0; i < n; i++)
     {
-        for (int j = i; j < N; j += i)
+        if (vis[i])
+            continue;
+
+        for (int j = i; !vis[j]; j = a[j])
         {
-            divisors[j].push_back(i);
+            vis[j] = true;
         }
+        parity ^= 1;
     }
+
+    return parity;
 }
 
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
+    int n;
+    cin >> n;
 
-    vi a(n);
-    vi freq(m + 5, 0);
-    for (int i = 0; i < n; i++)
+    vi a(n), b(n);
+    takeinput(a);
+    takeinput(b);
+
+    auto c = a, d = b;
+
+    asort(c);
+    asort(d);
+
+    if (c != d)
     {
-        cin >> a[i];
+        cout << "NO\n";
     }
-
-    sort(all(a));
-
-    int ans = INT_MAX, cnt = 0, j = 0;
-    for (int i = 0; i < n; i++)
+    else
     {
-        for (auto &div : divisors[a[i]])
+        for (int i = 0; i < n; i++)
         {
-            if (div > m)
-            {
-                break;
-            }
-            if (freq[div] == 0)
-            {
-                cnt++;
-            }
-
-            freq[div]++;
+            a[i] = lower_bound(all(c), a[i]) - c.begin();
+        }
+        for (int i = 0; i < n; i++)
+        {
+            b[i] = lower_bound(all(d), b[i]) - d.begin();
         }
 
-        while (cnt == m)
+        if (parity(a) == parity(b))
         {
-            int diff = a[i] - a[j];
-            ans = min(ans, diff);
-
-            for (auto &div : divisors[a[j]])
-            {
-                if (div > m)
-                {
-                    break;
-                }
-
-                freq[div]--;
-                if (freq[div] == 0)
-                {
-                    cnt--;
-                }
-            }
-
-            j++;
+            cout << "YES\n";
+        }
+        else
+        {
+            cout << "NO\n";
         }
     }
-
-    cout << (ans == INT_MAX ? -1 : ans) << endl;
 }
 
 int main()
 {
     fast;
     // setIO();
-
-    init();
 
     int t = 1;
     cin >> t;

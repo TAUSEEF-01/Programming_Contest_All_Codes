@@ -163,83 +163,90 @@ void setIO()
 #endif
 }
 
-const int N = 1e5 + 5;
-vi divisors[N];
-
-void init()
+int minSwaps(int arr[], int n)
 {
-    for (int i = 1; i < N; i++)
+    pair<int, int> arrPos[n];
+    for (int i = 0; i < n; i++)
     {
-        for (int j = i; j < N; j += i)
+        arrPos[i].first = arr[i];
+        arrPos[i].second = i;
+    }
+
+    sort(arrPos, arrPos + n);
+    vector<bool> vis(n, false);
+
+    int ans = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (vis[i] || arrPos[i].second == i)
+            continue;
+
+        int cycle_size = 0;
+        int j = i;
+        while (!vis[j])
         {
-            divisors[j].push_back(i);
+            vis[j] = 1;
+
+            j = arrPos[j].second;
+            cycle_size++;
+        }
+
+        if (cycle_size > 0)
+        {
+            ans += (cycle_size - 1);
         }
     }
+
+    return ans;
 }
+
 
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
+    int n;
+    cin >> n;
 
-    vi a(n);
-    vi freq(m + 5, 0);
-    for (int i = 0; i < n; i++)
+    vi a(n), b(n);
+    takeinput(a);
+    takeinput(b);
+
+    auto c = a, d = b;
+
+    asort(c);
+    asort(d);
+
+    if(c != d)
     {
-        cin >> a[i];
+        cout << "NO\n";
     }
-
-    sort(all(a));
-
-    int ans = INT_MAX, cnt = 0, j = 0;
-    for (int i = 0; i < n; i++)
+    else
     {
-        for (auto &div : divisors[a[i]])
+        int arr1[n], arr2[n];
+        for (int i = 0; i < n; i++)
         {
-            if (div > m)
-            {
-                break;
-            }
-            if (freq[div] == 0)
-            {
-                cnt++;
-            }
-
-            freq[div]++;
+            arr1[i] = a[i];
         }
-
-        while (cnt == m)
+        for (int i = 0; i < n; i++)
         {
-            int diff = a[i] - a[j];
-            ans = min(ans, diff);
-
-            for (auto &div : divisors[a[j]])
-            {
-                if (div > m)
-                {
-                    break;
-                }
-
-                freq[div]--;
-                if (freq[div] == 0)
-                {
-                    cnt--;
-                }
-            }
-
-            j++;
+            arr2[i] = b[i];
+        }
+    
+        if(minSwaps(arr1, n) % 2 == minSwaps(arr2, n) % 2)
+        {
+            cout << "YES\n";
+        }
+        else
+        {
+            cout << "NO\n";
         }
     }
-
-    cout << (ans == INT_MAX ? -1 : ans) << endl;
 }
 
 int main()
 {
     fast;
     // setIO();
-
-    init();
 
     int t = 1;
     cin >> t;

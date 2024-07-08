@@ -163,83 +163,133 @@ void setIO()
 #endif
 }
 
-const int N = 1e5 + 5;
-vi divisors[N];
-
-void init()
+int merge(int a[], int low, int mid, int high)
 {
-    for (int i = 1; i < N; i++)
+    int cnt = 0;
+
+    int sz1 = mid - low + 1, sz2 = high - mid;
+    int L[sz1], R[sz2];
+
+    int l = 0, r = 0, pos = low;
+
+    for (int i = low, j = 0; i <= mid; i++, j++)
     {
-        for (int j = i; j < N; j += i)
-        {
-            divisors[j].push_back(i);
-        }
+        L[j] = a[i];
     }
+    for (int i = mid + 1, j = 0; i <= high; i++, j++)
+    {
+        R[j] = a[i];
+    }
+
+    while (l < sz1 && r < sz2)
+    {
+        if (L[l] < R[r])
+        {
+            cnt += r - mid;
+            a[pos] = L[l];
+            l++;
+        }
+        else
+        {
+            a[pos] = R[r];
+            r++;
+        }
+        pos++;
+    }
+
+    while (l < sz1)
+    {
+        cnt += r - mid;
+        a[pos] = L[l];
+        l++;
+        pos++;
+    }
+
+    while (r < sz2)
+    {
+        a[pos] = R[r];
+        r++;
+        pos++;
+    }
+
+    return cnt;
+}
+
+int mergeSort(int a[], int low, int high)
+{
+    if (low >= high)
+        return 0;
+
+    int mid = (low + high) / 2;
+
+    int x = mergeSort(a, low, mid);
+    int y = mergeSort(a, mid + 1, high);
+
+    int z = merge(a, low, mid, high);
+
+    return x + y + z;
+}
+
+int parity(int arr[], int n)
+{
+    return mergeSort(arr, 0, n - 1); 
 }
 
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
+    int n;
+    cin >> n;
 
-    vi a(n);
-    vi freq(m + 5, 0);
+    int arr1[n], arr2[n], temp1[n], temp2[n];
     for (int i = 0; i < n; i++)
     {
-        cin >> a[i];
+        cin >> arr1[i];
+        temp1[i] = arr1[i];
+    }
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr2[i];
+        temp2[i] = arr2[i];
     }
 
-    sort(all(a));
+    sort(temp1, temp1 + n);
+    sort(temp2, temp2 + n);
 
-    int ans = INT_MAX, cnt = 0, j = 0;
+    bool notSame = false;
     for (int i = 0; i < n; i++)
     {
-        for (auto &div : divisors[a[i]])
+        if (temp1[i] != temp2[i])
         {
-            if (div > m)
-            {
-                break;
-            }
-            if (freq[div] == 0)
-            {
-                cnt++;
-            }
-
-            freq[div]++;
-        }
-
-        while (cnt == m)
-        {
-            int diff = a[i] - a[j];
-            ans = min(ans, diff);
-
-            for (auto &div : divisors[a[j]])
-            {
-                if (div > m)
-                {
-                    break;
-                }
-
-                freq[div]--;
-                if (freq[div] == 0)
-                {
-                    cnt--;
-                }
-            }
-
-            j++;
+            notSame = true;
+            break;
         }
     }
 
-    cout << (ans == INT_MAX ? -1 : ans) << endl;
+    if (notSame)
+    {
+        cout << "NO\n";
+        return;
+    }
+    else
+    {
+        int m1 = parity(arr1, n);
+        int m2 = parity(arr2, n);
+
+        if (abs(m1 - m2) % 2 == 0)
+        {
+            cout << "YES\n";
+        }
+        else
+        {
+            cout << "NO\n";
+        }
+    }
 }
 
 int main()
 {
     fast;
     // setIO();
-
-    init();
 
     int t = 1;
     cin >> t;

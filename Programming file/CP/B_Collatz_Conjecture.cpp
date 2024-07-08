@@ -163,83 +163,46 @@ void setIO()
 #endif
 }
 
-const int N = 1e5 + 5;
-vi divisors[N];
-
-void init()
-{
-    for (int i = 1; i < N; i++)
-    {
-        for (int j = i; j < N; j += i)
-        {
-            divisors[j].push_back(i);
-        }
-    }
-}
-
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
+    ll x, y, k;
+    cin >> x >> y >> k;
 
-    vi a(n);
-    vi freq(m + 5, 0);
-    for (int i = 0; i < n; i++)
+    while (k > 0)
     {
-        cin >> a[i];
-    }
-
-    sort(all(a));
-
-    int ans = INT_MAX, cnt = 0, j = 0;
-    for (int i = 0; i < n; i++)
-    {
-        for (auto &div : divisors[a[i]])
+        ll temp = k - (y - x % y);
+        if (temp < 0)
         {
-            if (div > m)
-            {
-                break;
-            }
-            if (freq[div] == 0)
-            {
-                cnt++;
-            }
+            cout << x + k << endl;
+            return;
+        }
+        else
+        {
+            k = temp;
 
-            freq[div]++;
+            x += (y - x % y);
+
+            while (x % y == 0)
+            {
+                x /= y;
+            }
+        }
+        if (x == 1)
+        {
+            break;
         }
 
-        while (cnt == m)
-        {
-            int diff = a[i] - a[j];
-            ans = min(ans, diff);
-
-            for (auto &div : divisors[a[j]])
-            {
-                if (div > m)
-                {
-                    break;
-                }
-
-                freq[div]--;
-                if (freq[div] == 0)
-                {
-                    cnt--;
-                }
-            }
-
-            j++;
-        }
+        // dbg(k);
+        // dbg(x);
     }
 
-    cout << (ans == INT_MAX ? -1 : ans) << endl;
+    cout << x + k % (y - 1) << endl;
 }
 
 int main()
 {
     fast;
     // setIO();
-
-    init();
 
     int t = 1;
     cin >> t;
