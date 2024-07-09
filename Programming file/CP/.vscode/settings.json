@@ -19,6 +19,7 @@
         "valarray": "cpp",
         "*.tcc": "cpp",
         "complex": "cpp",
-        "cstdlib": "cpp"
+        "cstdlib": "cpp",
+        "tuple": "cpp"
     }
 }

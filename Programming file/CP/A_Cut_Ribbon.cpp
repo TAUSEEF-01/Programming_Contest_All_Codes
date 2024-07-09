@@ -25,83 +25,55 @@ using vvl = vector<vl>;
 using vs = vector<string>;
 using vb = vector<bool>;
 using pii = pair<int, int>;
+
 /**/
 #define input(a)      \
     for (auto &x : a) \
         cin >> x;
+
+#define output(a)         \
+    for (auto &x : a)     \
+        cout << x << ' '; \
+    cout << endl;
+
 /**/
-#define yes          \
-    cout << "YES\n"; \
-    #define no       \
-            cout     \
-        << "NO\n";   \
+#define yes \
+    cout << "YES\n"
+
+#define no \
+    cout << "NO\n"
+
 /**/
 const ll mod = 1e9 + 7, inf = 1e18;
 const double pi = acos(-1);
 #define dbg(a) cerr << __LINE__ << ": " << #a << " = " << a << '\n'
 
-ll n, weight;
-vector<pair<ll, ll>> vp;
-
-ll dp[105][100005];
-
-// ll knapsack(int ind, ll w)
-// {
-//     if (ind == n - 1)
-//     {
-//         if (vp[ind].first <= w)
-//             return vp[ind].second;
-//         else
-//             return 0;
-//     }
-//     if (dp[ind][w] != -1)
-//     {
-//         return dp[ind][w];
-//     }
-
-//     ll x = 0, y = 0;
-//     if (vp[ind].first <= w)
-//         x = knapsack(ind + 1, w - vp[ind].first) + vp[ind].second;
-
-//     y = knapsack(ind + 1, w);
-
-//     return dp[ind][w] = max(x, y);
-// }
-
-ll knapsack(int ind, ll w)
-{
-    if (w == 0)
-        return 0;
-
-    if (ind > n - 1)
-        return 0;
-
-    if (dp[ind][w] != -1)
-        return dp[ind][w];
-
-    ll x = knapsack(ind + 1, w);
-    if (w - vp[ind].first >= 0)
-        x = max(x, knapsack(ind + 1, w - vp[ind].first) + vp[ind].second);
-
-    return dp[ind][w] = x;
-}
-
 void solve()
 {
-    memset(dp, -1, sizeof(dp));
+    int n;
+    cin >> n;
 
-    cin >> n >> weight;
+    vi a(3);
+    input(a);
 
-    for (int i = 0; i < n; i++)
+    vsort(a);
+
+    vi dp(n + 1, INT_MIN);
+    dp[0] = 0;
+
+    for (int i = 1; i <= n; i++)
     {
-        ll w, v;
-        cin >> w >> v;
-
-        vp.push_back({w, v});
+        for (int j = 0; j < 3; j++)
+        {
+            if (a[j] <= i)
+            {
+                if (dp[i - a[j]] != INT_MIN)
+                    dp[i] = max(dp[i - a[j]] + 1, dp[i]);
+            }
+        }
     }
 
-    ll ans = knapsack(0, weight);
-    cout << ans << endl;
+    cout << dp[n] << endl;
 }
 
 int main()
