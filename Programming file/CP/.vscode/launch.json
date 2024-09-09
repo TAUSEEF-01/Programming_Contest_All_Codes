@@ -1,6 +1,13 @@
 {
     "configurations": [
         {
+            "type": "java",
+            "name": "F_Sakurako_s_Box",
+            "request": "launch",
+            "mainClass": "F_Sakurako_s_Box",
+            "projectName": "CP_883efcd9"
+        },
+        {
             "name": "C/C++: g++.exe build and debug active file",
             "type": "cppdbg",
             "request": "launch",

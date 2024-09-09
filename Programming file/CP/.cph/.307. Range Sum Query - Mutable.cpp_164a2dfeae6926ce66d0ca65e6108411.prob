@@ -1,0 +1,1 @@
+{"name":"Local: 307","url":"d:\\All_Codes\\Programming file\\CP\\307. Range Sum Query - Mutable.cpp","tests":[{"id":1725650569448,"input":"2 3\n9 -8\n2 0 1\n1 0 3\n2 1 1\n\n","output":"1\n-8"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\All_Codes\\Programming file\\CP\\307. Range Sum Query - Mutable.cpp","group":"local","local":true}

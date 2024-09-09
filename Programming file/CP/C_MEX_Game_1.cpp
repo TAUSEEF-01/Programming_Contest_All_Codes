@@ -1,3 +1,5 @@
+// accepted
+
 #include <bits/stdc++.h>
 
 #include <ext/pb_ds/assoc_container.hpp>
@@ -163,7 +165,64 @@ void setIO()
 
 void solve()
 {
+    int n;
+    cin >> n;
+
+    vi a(n), cnt(n + 1, 0);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+        cnt[a[i]]++;
+    }
+
+    deque<pair<int, int>> d;
+    for (int i = 0; i < n; i++)
+    {
+        d.push_back({cnt[a[i]], a[i]});
+    }
+
+    asort(d);
+
+    int c = 0, t = 1;
+    vi ans;
+    while (!d.empty())
+    {
+        if (t)
+        {
+            pair<int, int> p = d[0];
+            ans.push_back(p.second);
+            d.pop_front();
+        }
+        else
+        {
+            pair<int, int> p = d[0];
+            d.pop_front();
+            if (p.first > 1)
+                d.push_front({p.first - 1, p.second});
+        }
+        t ^= 1;
+    }
+
+    asort(ans);
+
+    n = ans.size();
+    for (int i = 0; i < n; i++)
+    {
+        if (ans[i] != c)
+        {
+            cout << c << endl;
+            return;
+        }
+        else
+        {
+            while (ans[i] == c)
+                i++;
+            i--;
+            c++;
+        }
+    }
     
+    cout << c << endl;
 }
 
 int main()

@@ -1,3 +1,5 @@
+// accepted
+
 #include <bits/stdc++.h>
 
 #include <ext/pb_ds/assoc_container.hpp>
@@ -161,31 +163,94 @@ void setIO()
 #endif
 }
 
+#define get_bit(n, pos) (bool)(n & (1LL << pos))
+#define set_bit(n, pos) (n | (1LL << pos))
+#define clear_bit(n, pos) (n & (~(1 << pos)))
+#define update_bit(n, pos, value) ((clear_bit(n, pos)) | (value << pos))
+
+ll leftCount(ll num, string a, int sz)
+{
+    int flag = 0;
+    for (ll i = sz - 1, j = 0; i >= 0; i--, j++)
+    {
+        if (a[i] == '0')
+        {
+            flag = 1;
+            num = set_bit(num, j);
+        }
+        if (flag && a[i] == '1')
+        {
+            num = clear_bit(num, j);
+            return num;
+        }
+    }
+}
+
+ll rightCount(ll num, string a, int sz)
+{
+    for (ll i = sz - 1, j = 0; i >= 0; i--, j++)
+    {
+        if (a[i] == '0')
+        {
+            num = set_bit(num, j);
+            return num;
+        }
+        else
+        {
+            num = clear_bit(num, j);
+        }
+    }
+}
+
 void solve()
 {
-    ll n , m;
+    ll n, m;
     cin >> n >> m;
 
-    ll t = (ll)floor(log2(n));
-    ll num = (ll) pow(2, t) - 1;
-
-    if(t <= m)
+    ll nb = n + m, ns = max(n - m, 0LL), temp = n;
+    string a;
+    while (temp > 0)
     {
-        cout << (ll)pow(2, t+1) - 1 << endl;
+        a += (temp % 2 + '0');
+        temp /= 2;
     }
-    else
-    {
+    temp = n;
 
-        ll num = n-1;
-        while(m--)
+    ll sz = a.size();
+    reverse(all(a));
+    for (int i = 0; i < 33 - sz; i++)
+    {
+        a = "0" + a;
+    }
+    a = "1" + a;
+    // cout << a << endl;
+
+    sz = a.size();
+    for (ll i = sz - 1, j = 0; i >= 0; i--, j++)
+    {
+        // cout << i << ": \n";
+        if (a[i] == '0')
         {
-            n |= num;
-            num--;
-            if(num <= 0)
-            break;
+            ll t1 = leftCount(n, a, sz), t2 = rightCount(n, a, sz);
+
+            // bitset<34> b1 = t1;
+            // bitset<34> b2 = t2;
+            // cout << a << endl;
+            // cout << b1 << endl;
+            // cout << b2 << endl;
+            // cout << ns << ' ' << t1 << ' ' << temp << ' ' << t2 << ' ' << nb << endl;
+
+            if ((t1 >= ns && t1 <= nb) || (t2 >= ns && t2 <= nb))
+            {
+                a[i] = '1';
+                n = set_bit(n, j);
+            }
+            // cout << n << endl;
         }
-        cout << n << endl;
+        // cout << endl;
     }
+
+    cout << n << endl;
 }
 
 int main()
