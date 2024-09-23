@@ -1,3 +1,5 @@
+// accepted
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
@@ -46,69 +48,124 @@ const ll mod = 1e9 + 7, inf = 1e18;
 const double pi = acos(-1);
 #define dbg(a) cerr << __LINE__ << ": " << #a << " = " << a << '\n'
 
-int n;
-int dx[] = {0, 1};
-int dy[] = {1, 0};
-ll dp[1005][1005];
-
-bool valid(int x, int y, vs &a)
+void solve1()
 {
-    if (x >= n || y >= n || a[x][y] == '*')
-        return false;
-    return true;
-}
+    int n;
+    cin >> n;
 
-ll calc(int x, int y, vs &a)
-{
-    if (x == n - 1 && y == n - 1)
-        return 1;
+    ll dp[n][n];
+    dp[n - 1][n - 1] = 1;
 
-    if (x >= n || y >= n)
-        return 0;
+    vs a(n);
+    input(a);
 
-    if (dp[x][y] != -1 && x != 0 && y != 0)
-        return (dp[x][y]) % mod;
-
-    for (int i = 0; i < 2; i++)
+    for (int i = n - 1; i >= 0; i--)
     {
-        if (valid(x + dx[i], y + dy[i], a))
+        for (int j = n - 1; j >= 0; j--)
         {
-            // if (dp[x + dx[i]][y + dy[i]] != -1 && x != 0 && y != 0)
-            //     dp[x][y] = (max(dp[x][y] , dp[x + dx[i]][y + dy[i]]) + 1) % mod;
-            // else
-                dp[x][y] = (dp[x][y] + calc(x + dx[i], y + dy[i], a)) % mod;
+            if (a[i][j] == '*')
+            {
+                dp[i][j] = 0;
+                continue;
+            }
 
-            // cout << x << ' ' << y << ' ' << dp[x][y] <<' ' << dp[x + dx[i]][y + dy[i]] << endl;
+            if (i == n - 1)
+            {
+                if (j != n - 1)
+                    dp[i][j] = dp[i][j + 1];
+            }
+            else if (j == n - 1 && i != n - 1)
+            {
+                dp[i][j] = dp[i + 1][j];
+            }
+            else
+            {
+                dp[i][j] = (dp[i][j + 1] + dp[i + 1][j]) % mod;
+            }
         }
     }
 
-
-    return dp[x][y];
+    cout << dp[0][0] << endl;
 }
 
-void solve()
+void solve2()
 {
-    memset(dp, -1, sizeof(dp));
-
+    int n;
     cin >> n;
-    dp[0][0] = 0;
+
+    ll dp[n][n];
+    dp[n - 1][n - 1] = 1;
 
     vs a(n);
-    for (int i = 0; i < n; i++)
+    input(a);
+
+    for (int i = n - 1; i >= 0; i--)
     {
-        cin >> a[i];
+        for (int j = n - 1; j >= 0; j--)
+        {
+            if (a[i][j] == '*')
+            {
+                dp[i][j] = 0;
+                continue;
+            }
+
+            if (i == n - 1 && j == n - 1)
+                continue;
+
+            ll s1 = i < n - 1 ? dp[i + 1][j] : 0;
+            ll s2 = j < n - 1 ? dp[i][j + 1] : 0;
+
+            dp[i][j] = (s1 + s2) % mod;
+        }
     }
 
-    cout << calc(0, 0, a) << endl;
+    cout << dp[0][0] << endl;
+}
 
-    // for(int i=0; i<n; i++)
-    // {
-    //     for(int j=0; j<n; j++)
-    //     {
-    //         cout << dp[i][j] << ' ';
-    //     }
-    //     cout << endl;
-    // }
+void solve3()
+{
+    int n;
+    cin >> n;
+
+    vs a(n);
+    input(a);
+
+    vl prevRow(n);
+
+    if (a[n - 1][n - 1] == '*')
+        prevRow[n - 1] = 0;
+    else
+        prevRow[n - 1] = 1;
+
+    for (int i = n - 2; i >= 0; i--)
+    {
+        if (a[n - 1][i] == '*')
+            prevRow[i] = 0;
+        else
+            prevRow[i] = prevRow[i + 1];
+    }
+
+    for (int i = n - 2; i >= 0; i--)
+    {
+        vl currRow(n);
+        for (int j = n - 1; j >= 0; j--)
+        {
+            if (a[i][j] == '*')
+            {
+                currRow[j] = 0;
+                continue;
+            }
+
+            ll s1 = prevRow[j];
+            ll s2 = j < n - 1 ? currRow[j + 1] : 0;
+
+            currRow[j] = (s1 + s2) % mod;
+        }
+
+        prevRow = currRow;
+    }
+
+    cout << prevRow[0] << endl;
 }
 
 int main()
@@ -128,7 +185,10 @@ int main()
     for (int i = 1; i <= t; i++)
     {
         // cout<<"Case "<<i<<": ";
-        solve();
+
+        // solve1();
+        // solve2();
+        solve3(); // dp space optimized
     }
 
     return 0;

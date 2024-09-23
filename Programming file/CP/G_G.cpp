@@ -14,32 +14,109 @@ typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_
 #define revsort(a) sort(reall(a))
 #define vmin(a) *min_element(all(a))
 #define vmax(a) *max_element(all(a))
+#define loop(i, k, n) for (ll i = k; i < n; i++)
+#define Loop(i, k, n) for (ll i = k; i <= n; i++)
 using vi = vector<int>;
 using vl = vector<ll>;
+using vvi = vector<vi>;
+using vvl = vector<vl>;
 using vs = vector<string>;
-const ll N = 1e9 + 7, inf = 1e18;
+using vb = vector<bool>;
+using pii = pair<int, int>;
+
+/**/
+#define input(a)      \
+    for (auto &x : a) \
+        cin >> x;
+
+#define output(a)         \
+    for (auto &x : a)     \
+        cout << x << ' '; \
+    cout << endl;
+
+/**/
+#define yes \
+    cout << "YES\n"
+
+#define no \
+    cout << "NO\n"
+
+/**/
+const ll mod = 1e9 + 7, inf = 1e18;
 const double pi = acos(-1);
+#define dbg(a) cerr << __LINE__ << ": " << #a << " = " << a << '\n'
 
 void solve()
 {
     int n;
     cin >> n;
 
-    string a[n];
-    map<string, ll> mp;
-    for (int i = 0; i < n; i++)
+    vl a(n), ans(n);
+    input(a);
+
+    int cnt = 1;
+    ans[0] = 1;
+    int pos = 1;
+    while(pos < n && a[0] >= a[pos])
     {
-        cin >> a[i];
-        vsort(a[i]);
-        mp[a[i]]++;
+        ans[0]++;
+        pos++;
     }
 
-    ll ans = 0;
-    for (auto &x : mp)
+    cnt = ans[0];
+
+    for(int i=1; i<n; i++)
     {
-        ans += (x.second) * (x.second - 1) * 1LL / 2;
+        if(a[i] >= a[i-1])
+        {
+            cnt++;
+            // ans[i] = cnt;
+        }
+        else
+        {
+            if(cnt > a[i - 1])
+            {
+                cnt++;
+            }
+            else
+            {
+                cnt--;
+            }
+
+            // ans[i] = cnt;
+        }
+        ans[i] = cnt;
     }
-    cout << ans << endl;
+
+    // int pos = 1;
+    // for(int i = 1; i<n; i++)
+    // {
+    //     if(a[i] > a[i - 1])
+    //     {
+    //         pos = i;
+    //         break;
+    //     }
+    // }
+
+    // for(int i=pos-1; i>=0; i--)
+    // {
+    //     ans[i] = ans[pos] - 1;
+    // }
+
+
+    // while(pos < n && a[0] == a[pos])
+    // {
+    //     ans[0]++;
+    //     pos++;
+        
+    // }
+
+    // if(n > 1)
+    // {
+    //     if(a[0])
+    // }
+
+    output(ans);
 }
 
 int main()

@@ -22,7 +22,19 @@ const double pi = acos(-1);
 
 void solve()
 {
-    
+    ll n;
+    cin >> n;
+
+    ll ans = 0;
+    vl a(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+        if (i > 0)
+            ans += a[i] * a[i - 1];
+    }
+
+    cout << ans << endl;
 }
 
 int main()
@@ -37,7 +49,7 @@ int main()
     // #endif
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
 
     for (int i = 1; i <= t; i++)
     {

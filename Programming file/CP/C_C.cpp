@@ -14,52 +14,56 @@ typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_
 #define revsort(a) sort(reall(a))
 #define vmin(a) *min_element(all(a))
 #define vmax(a) *max_element(all(a))
+#define loop(i, k, n) for (ll i = k; i < n; i++)
+#define Loop(i, k, n) for (ll i = k; i <= n; i++)
 using vi = vector<int>;
 using vl = vector<ll>;
+using vvi = vector<vi>;
+using vvl = vector<vl>;
 using vs = vector<string>;
-const ll N = 1e9 + 7, inf = 1e18;
-const double pi = acos(-1);
+using vb = vector<bool>;
+using pii = pair<int, int>;
 
-void solve1()
+/**/
+#define input(a)      \
+    for (auto &x : a) \
+        cin >> x;
+
+#define output(a)         \
+    for (auto &x : a)     \
+        cout << x << ' '; \
+    cout << endl;
+
+/**/
+#define yes \
+    cout << "YES\n"
+
+#define no \
+    cout << "NO\n"
+
+/**/
+const ll mod = 1e9 + 7, inf = 1e18;
+const double pi = acos(-1);
+#define dbg(a) cerr << __LINE__ << ": " << #a << " = " << a << '\n'
+
+void solve()
 {
     int n;
     cin >> n;
 
-    vl a(n);
-    for (int i = 0; i < n; i++)
-    {
-        cin >> a[i];
-    }
-
-    ll ans = 0;
-    deque<ll> dq, dq2;
+    string a, b;
+    cin >> a >> b;
 
     for (int i = 0; i < n; i++)
     {
-        if (dq.size() == 0)
+        if ((a[i] == 'A' && b[i] == 'C') || (a[i] == 'A' && b[i] == 'G') || (a[i] == 'T' && b[i] == 'C') || (a[i] == 'T' && b[i] == 'G'))
         {
-            dq.push_front(a[i]);
-            continue;
-        }
-        else if (dq2.size() == 0)
-        {
-            dq2.push_back(a[i]);
-            continue;
-        }
-
-        if (dq.front() < dq2.back())
-        {
-            ans += dq.front();
-            dq.push_front(a[i]);
-        }
-        else
-        {
-            ans += dq2.back();
-            dq2.push_back(a[i]);
+            cout << "NO\n";
+            return;
         }
     }
 
-    cout << ans << endl;
+    cout << "YES\n";
 }
 
 int main()
@@ -74,7 +78,7 @@ int main()
     // #endif
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
 
     for (int i = 1; i <= t; i++)
     {
