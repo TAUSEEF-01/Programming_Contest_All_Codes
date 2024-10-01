@@ -46,50 +46,7 @@ const ll mod = 1e9 + 7, inf = 1e18;
 const double pi = acos(-1);
 #define dbg(a) cerr << __LINE__ << ": " << #a << " = " << a << '\n'
 
-void solve() {
-  int n;
-  cin >> n;
-
-  if (n == 1) {
-    cout << "impossible\n";
-    return;
- }
- if(n % 2)
- {
-    cout << 1 << ' ';
-    for(int i=0; i<n; i++)
-    {
-        if(i != 1)
-            cout << i << ' ';
-    }
-    cout << endl;
-    return;
- }   
- if((n & (n-1)) == 0)
- {
-    cout << "impossible\n";
-    return;
- }
- 
-
-  //   vi a;
-  //   int ans = 0;
-  //   loop(i, 1, n) {
-  //     ans ^= i;
-  //     cout << ans << ' ';
-  //     a.push_back(i);
-  //     if (i == 1)
-  //     {
-  //         a.push_back(0);
-  //         ans ^= 0;
-  //         cout << ans << ' ';
-  //     }
-  //   }
-  //   cout << endl;
-
-  // output(a);
-  cout << n << endl;
-}
+void solve() {}
 
 int main() {
   ios_base::sync_with_stdio(0);
@@ -102,7 +59,7 @@ int main() {
   // #endif
 
   int t = 1;
-  cin >> t;
+  // cin >> t;
 
   for (int i = 1; i <= t; i++) {
     // cout<<"Case "<<i<<": ";

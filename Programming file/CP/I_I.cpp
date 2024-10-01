@@ -47,48 +47,22 @@ const double pi = acos(-1);
 #define dbg(a) cerr << __LINE__ << ": " << #a << " = " << a << '\n'
 
 void solve() {
-  int n;
-  cin >> n;
+  string a;
+  cin >> a;
 
-  if (n == 1) {
-    cout << "impossible\n";
-    return;
- }
- if(n % 2)
- {
-    cout << 1 << ' ';
-    for(int i=0; i<n; i++)
-    {
-        if(i != 1)
-            cout << i << ' ';
+  int n = a.size();
+  int maxi = 0;
+  for (int i = 0; i < n; i++) {
+    int j = i + 1, cnt = 0;
+
+    while (j < n && a[i] == a[j]) {
+      cnt++;
+      j++;
     }
-    cout << endl;
-    return;
- }   
- if((n & (n-1)) == 0)
- {
-    cout << "impossible\n";
-    return;
- }
- 
-
-  //   vi a;
-  //   int ans = 0;
-  //   loop(i, 1, n) {
-  //     ans ^= i;
-  //     cout << ans << ' ';
-  //     a.push_back(i);
-  //     if (i == 1)
-  //     {
-  //         a.push_back(0);
-  //         ans ^= 0;
-  //         cout << ans << ' ';
-  //     }
-  //   }
-  //   cout << endl;
-
-  // output(a);
-  cout << n << endl;
+    i = j - 1;
+    maxi = max(maxi, cnt / 2);
+  }
+  cout << maxi << endl;
 }
 
 int main() {

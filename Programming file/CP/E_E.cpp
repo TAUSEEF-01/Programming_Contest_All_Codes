@@ -46,49 +46,59 @@ const ll mod = 1e9 + 7, inf = 1e18;
 const double pi = acos(-1);
 #define dbg(a) cerr << __LINE__ << ": " << #a << " = " << a << '\n'
 
+ll findGCD(ll x, ll y, ll res) {
+
+  ll ans = __gcd(x, res);
+  ans = max(ans, __gcd(y, res));
+
+  return ans;
+}
+
+ll maximumGCD(vl &A, ll N, ll K) {
+  ll dp[3];
+  memset(dp, 0, sizeof(dp));
+
+  dp[0] = A[0];
+  dp[1] = A[0] + K;
+
+  int flag = 0;
+
+  for (int i = 1; i < N; i++) {
+
+    ll x = dp[0];
+    ll y = dp[1];
+
+
+    dp[0] = findGCD(x, y, A[i]);
+    dp[1] = findGCD(x, y, A[i] + K);
+    
+    // if(dp[1] > dp[0] && flag == 0)
+    // {
+    //     flag = 1;
+    //     dp[0] = findGCD(x, y, A[i]);
+    //     dp[1] = findGCD(x, y, A[i] + K);
+    // }
+    // else
+    // {
+    //    dp[1] = dp[0] = findGCD(x, y, A[i]);
+    // }
+  }
+
+  ll mx = max({dp[0], dp[1]});
+  return mx;
+}
+
 void solve() {
-  int n;
-  cin >> n;
+  ll n, k;
+  cin >> n >> k;
 
-  if (n == 1) {
-    cout << "impossible\n";
-    return;
- }
- if(n % 2)
- {
-    cout << 1 << ' ';
-    for(int i=0; i<n; i++)
-    {
-        if(i != 1)
-            cout << i << ' ';
-    }
-    cout << endl;
-    return;
- }   
- if((n & (n-1)) == 0)
- {
-    cout << "impossible\n";
-    return;
- }
- 
+  ll ans = 0;
+  vl a(n);
+  for (int i = 0; i < n; i++) {
+    cin >> a[i];
+  }
 
-  //   vi a;
-  //   int ans = 0;
-  //   loop(i, 1, n) {
-  //     ans ^= i;
-  //     cout << ans << ' ';
-  //     a.push_back(i);
-  //     if (i == 1)
-  //     {
-  //         a.push_back(0);
-  //         ans ^= 0;
-  //         cout << ans << ' ';
-  //     }
-  //   }
-  //   cout << endl;
-
-  // output(a);
-  cout << n << endl;
+  cout << maximumGCD(a, n, k) << endl;
 }
 
 int main() {
