@@ -1,3 +1,5 @@
+// accepted
+
 #include <bits/stdc++.h>
 
 #include <ext/pb_ds/assoc_container.hpp>
@@ -158,7 +160,12 @@ void setIO()
 
 void solve()
 {
-    
+    int n;
+    cin >> n;
+
+    int a = n / 3;
+    int x = n - ((n - a) / 2) * 2, y = (n - a) / 2;
+    cout << x << ' ' << y << endl;
 }
 
 int main()

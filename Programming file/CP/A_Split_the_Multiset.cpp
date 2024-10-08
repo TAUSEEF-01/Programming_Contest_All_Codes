@@ -1,3 +1,5 @@
+// accepted
+
 #include <bits/stdc++.h>
 
 #include <ext/pb_ds/assoc_container.hpp>
@@ -158,7 +160,16 @@ void setIO()
 
 void solve()
 {
-    
+    int n, k;
+    cin >> n >> k;
+
+    int cnt = 0;
+    while (n > 1)
+    {
+        n -= k - 1;
+        cnt++;
+    }
+    cout << cnt << endl;
 }
 
 int main()

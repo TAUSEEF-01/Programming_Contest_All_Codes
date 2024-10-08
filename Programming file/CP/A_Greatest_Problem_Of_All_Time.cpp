@@ -3,9 +3,7 @@
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace std;
 using namespace __gnu_pbds;
-typedef tree<int, null_type, less<int>, rb_tree_tag,
-             tree_order_statistics_node_update>
-    ordered_set;
+typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
 
 #define ll long long
 #define ull unsigned long long
@@ -27,19 +25,21 @@ using vb = vector<bool>;
 using pii = pair<int, int>;
 
 /**/
-#define input(a)    \
-  for (auto &x : a) \
-    cin >> x;
+#define input(a)      \
+    for (auto &x : a) \
+        cin >> x;
 
-#define output(a)     \
-  for (auto &x : a)   \
-    cout << x << ' '; \
-  cout << endl;
+#define output(a)         \
+    for (auto &x : a)     \
+        cout << x << ' '; \
+    cout << endl;
 
 /**/
-#define yes cout << "YES\n"
+#define yes \
+    cout << "YES\n"
 
-#define no cout << "NO\n"
+#define no \
+    cout << "NO\n"
 
 /**/
 const ll mod = 1e9 + 7, inf = 1e18;
@@ -48,45 +48,28 @@ const double pi = acos(-1);
 
 void solve()
 {
-  string a;
-  cin >> a;
-
-  int n = a.size();
-  int maxi = 0;
-  for (int i = 0; i < n; i++)
-  {
-    int j = i + 1, cnt = 0;
-
-    while (j < n && a[i] == a[j])
-    {
-      cnt++;
-      j++;
-    }
-    i = j - 1;
-    maxi = max(maxi, cnt / 2);
-  }
-  cout << maxi << endl;
+    cout << "Hello World!\n";
 }
 
 int main()
 {
-  ios_base::sync_with_stdio(0);
-  cin.tie(0);
-  cout.tie(0);
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
 
-  // #ifndef ONLINE_JUDGE
-  // freopen("input.txt","r",stdin);
-  // freopen("output.txt","w",stdout);
-  // #endif
+    // #ifndef ONLINE_JUDGE
+    // freopen("input.txt","r",stdin);
+    // freopen("output.txt","w",stdout);
+    // #endif
 
-  int t = 1;
-  cin >> t;
+    int t = 1;
+    cin >> t;
 
-  for (int i = 1; i <= t; i++)
-  {
-    // cout<<"Case "<<i<<": ";
-    solve();
-  }
+    for (int i = 1; i <= t; i++)
+    {
+        // cout<<"Case "<<i<<": ";
+        solve();
+    }
 
-  return 0;
+    return 0;
 }

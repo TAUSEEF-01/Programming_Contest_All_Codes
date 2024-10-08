@@ -27,13 +27,13 @@ using vb = vector<bool>;
 using pii = pair<int, int>;
 
 /**/
-#define input(a)                                                               \
-  for (auto &x : a)                                                            \
+#define input(a)    \
+  for (auto &x : a) \
     cin >> x;
 
-#define output(a)                                                              \
-  for (auto &x : a)                                                            \
-    cout << x << ' ';                                                          \
+#define output(a)     \
+  for (auto &x : a)   \
+    cout << x << ' '; \
   cout << endl;
 
 /**/
@@ -46,7 +46,8 @@ const ll mod = 1e9 + 7, inf = 1e18;
 const double pi = acos(-1);
 #define dbg(a) cerr << __LINE__ << ": " << #a << " = " << a << '\n'
 
-ll findGCD(ll x, ll y, ll res) {
+ll findGCD(ll x, ll y, ll res)
+{
 
   ll ans = __gcd(x, res);
   ans = max(ans, __gcd(y, res));
@@ -54,7 +55,8 @@ ll findGCD(ll x, ll y, ll res) {
   return ans;
 }
 
-ll maximumGCD(vl &A, ll N, ll K) {
+ll maximumGCD(vl &A, ll N, ll K)
+{
   ll dp[3];
   memset(dp, 0, sizeof(dp));
 
@@ -63,15 +65,15 @@ ll maximumGCD(vl &A, ll N, ll K) {
 
   int flag = 0;
 
-  for (int i = 1; i < N; i++) {
+  for (int i = 1; i < N; i++)
+  {
 
     ll x = dp[0];
     ll y = dp[1];
 
-
     dp[0] = findGCD(x, y, A[i]);
     dp[1] = findGCD(x, y, A[i] + K);
-    
+
     // if(dp[1] > dp[0] && flag == 0)
     // {
     //     flag = 1;
@@ -88,20 +90,23 @@ ll maximumGCD(vl &A, ll N, ll K) {
   return mx;
 }
 
-void solve() {
+void solve()
+{
   ll n, k;
   cin >> n >> k;
 
   ll ans = 0;
   vl a(n);
-  for (int i = 0; i < n; i++) {
+  for (int i = 0; i < n; i++)
+  {
     cin >> a[i];
   }
 
   cout << maximumGCD(a, n, k) << endl;
 }
 
-int main() {
+int main()
+{
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
@@ -114,7 +119,8 @@ int main() {
   int t = 1;
   cin >> t;
 
-  for (int i = 1; i <= t; i++) {
+  for (int i = 1; i <= t; i++)
+  {
     // cout<<"Case "<<i<<": ";
     solve();
   }

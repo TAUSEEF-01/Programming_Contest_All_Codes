@@ -1,3 +1,5 @@
+// accepted
+
 #include <bits/stdc++.h>
 
 #include <ext/pb_ds/assoc_container.hpp>
@@ -158,7 +160,35 @@ void setIO()
 
 void solve()
 {
-    
+    int n;
+    cin >> n;
+
+    string a;
+    cin >> a;
+
+    string temp;
+    int c1=0, c0=0;
+    for (int i = 0; i < n; i++)
+    {
+        if(a[i] == '0')
+        {
+            c0++;
+            temp += '0';
+            while (a[i] == '0')
+                i++;
+            i--;
+        }
+        else
+        {
+            c1++;
+            temp += '1';
+        }
+    }
+
+    if(c0 < c1)
+        cout << "Yes\n";
+    else
+        cout << "No\n";
 }
 
 int main()

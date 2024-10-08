@@ -158,7 +158,17 @@ void setIO()
 
 void solve()
 {
-    
+    int n;
+    cin >> n;
+
+    string a;
+    cin >> a;
+
+    int cnt = 1;
+    for (int i = 0; i < 2 * n - 1; i++)
+        a[i + 1] == a[i] && a[i] == '(' ? cnt++ : cnt;
+
+    cout << cnt << endl;
 }
 
 int main()

@@ -1,3 +1,5 @@
+// accepted
+
 #include <bits/stdc++.h>
 
 #include <ext/pb_ds/assoc_container.hpp>
@@ -158,7 +160,27 @@ void setIO()
 
 void solve()
 {
-    
+    string a;
+    cin >> a;
+
+    int n = a.size();
+    vvi cnt(26, vi(2, 0));
+    int c1 = 0, c2 = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (cnt[a[i] - 'a'][0] == 0)
+        {
+            cnt[a[i] - 'a'][0] = 1;
+            c1++;
+        }
+        else if (cnt[a[i] - 'a'][1] == 0)
+        {
+            cnt[a[i] - 'a'][1] = 1;
+
+            c2++;
+        }
+    }
+    cout << (c1 + c2) / 2 << endl;
 }
 
 int main()
