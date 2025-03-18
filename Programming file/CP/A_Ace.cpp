@@ -274,45 +274,40 @@ bool comparator(pair<ll, ll> a, pair<ll, ll> b) // sort(vp.begin(), vp.end(), co
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    double x1, y1, x2, y2, r1, r2;
+    cin >> x1 >> y1 >> r1 >> x2 >> y2 >> r2;
 
-    if (n == 1)
+    double d = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+
+    if (d > r1 + r2)
     {
-        cout << 1 << endl;
+        cout << 0 << endl;
         return;
     }
-
-    ll ans = 1e9 + 7;
-    ll lo = 1, hi = 1e9 + 7;
-    while (lo <= hi)
+    else if (d <= (r1 - r2) && r1 >= r2)
     {
-        ll v = (lo + hi) / 2;
-        ll vv = v;
-
-        ll tot = 0;
-        ll kk = 1;
-        while (v > 0)
-        {
-            ll val = v / kk;
-            tot += val;
-            if (val == 0)
-                break;
-            kk *= k;
-        }
-
-        if (tot >= n)
-        {
-            ans = min(ans, vv);
-            hi = vv - 1;
-        }
-        else
-        {
-            lo = vv + 1;
-        }
+        cout << setprecision(8) << fixed << pi * r2 * r2 << endl;
+        return;
     }
+    else if (d <= (r2 - r1) && r2 >= r1)
+    {
+        cout << setprecision(8) << fixed << pi * r1 * r1 << endl;
+        return;
+    }
+    else
+    {
+        double alpha = acos((r1 * r1 + d * d - r2 * r2) / (2 * r1 * d)) * 2;
+        double beta = acos((r2 * r2 + d * d - r1 * r1) / (2 * r2 * d)) * 2;
+        double a1 = .5 * beta * r2 * r2 - .5 * r2 * r2 * sin(beta);
+        double a2 = .5 * alpha * r1 * r1 - .5 * r1 * r1 * sin(alpha);
 
-    cout << ans << endl;
+        // dbg(alpha);
+        // dbg(beta);
+        // dbg(a1);
+        // dbg(a2);
+
+        cout << setprecision(8) << fixed << (a1 + a2) << endl;
+    }
 }
 
 int main()
@@ -327,11 +322,11 @@ int main()
     // #endif
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
 
     for (int i = 1; i <= t; i++)
     {
-        // cout << "Case " << i << ": ";
+        cout << "Case " << i << ": ";
         solve();
     }
 

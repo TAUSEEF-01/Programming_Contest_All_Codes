@@ -1,3 +1,5 @@
+// accepted
+
 /*
 I am THE_BEST_no_1
 
@@ -274,45 +276,52 @@ bool comparator(pair<ll, ll> a, pair<ll, ll> b) // sort(vp.begin(), vp.end(), co
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    string a;
+    cin >> a;
 
-    if (n == 1)
+    vi v, pos;
+
+    int n = a.size();
+    for (int i = 0; i < n; i++)
     {
-        cout << 1 << endl;
-        return;
+        int j = i, len = 0;
+        pos.push_back(i);
+
+        while (j < n && a[i] == a[j])
+        {
+            len++;
+            j++;
+        }
+
+        v.push_back(len);
+        i = j - 1;
     }
 
-    ll ans = 1e9 + 7;
-    ll lo = 1, hi = 1e9 + 7;
-    while (lo <= hi)
+    // output(pos);
+
+    int t = v.size();
+    if (t % 2 == 0)
     {
-        ll v = (lo + hi) / 2;
-        ll vv = v;
-
-        ll tot = 0;
-        ll kk = 1;
-        while (v > 0)
-        {
-            ll val = v / kk;
-            tot += val;
-            if (val == 0)
-                break;
-            kk *= k;
-        }
-
-        if (tot >= n)
-        {
-            ans = min(ans, vv);
-            hi = vv - 1;
-        }
-        else
-        {
-            lo = vv + 1;
-        }
+        cout << 0 << endl;
     }
+    else
+    {
+        for (int i = 0, j = t - 1; i <= t / 2; i++, j--)
+        {
+            if (i != j && (a[pos[i]] != a[pos[j]] || v[i] + v[j] < 3))
+            {
+                cout << 0 << endl;
+                return;
+            }
+            else if (i == j && v[i] < 2)
+            {
+                cout << 0 << endl;
+                return;
+            }
+        }
 
-    cout << ans << endl;
+        cout << v[t / 2] + 1 << endl;
+    }
 }
 
 int main()

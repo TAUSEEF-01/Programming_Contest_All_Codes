@@ -1,3 +1,5 @@
+// accepted
+
 /*
 I am THE_BEST_no_1
 
@@ -274,45 +276,48 @@ bool comparator(pair<ll, ll> a, pair<ll, ll> b) // sort(vp.begin(), vp.end(), co
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    map<string, int> mp, mp2;
+    vector<pair<int, string>> vp, vp2;
+    map<string, array<int, 2>> arr;
 
-    if (n == 1)
+    loop(i, 0, 12)
     {
-        cout << 1 << endl;
-        return;
-    }
+        string a, b, p;
+        int x, y;
+        cin >> a >> x >> p >> y >> b;
 
-    ll ans = 1e9 + 7;
-    ll lo = 1, hi = 1e9 + 7;
-    while (lo <= hi)
-    {
-        ll v = (lo + hi) / 2;
-        ll vv = v;
+        mp2[a] += (x - y);
+        mp2[b] += (y - x);
 
-        ll tot = 0;
-        ll kk = 1;
-        while (v > 0)
-        {
-            ll val = v / kk;
-            tot += val;
-            if (val == 0)
-                break;
-            kk *= k;
-        }
-
-        if (tot >= n)
-        {
-            ans = min(ans, vv);
-            hi = vv - 1;
-        }
+        if (x == y)
+            mp[a] += 1, mp[b] += 1;
+        else if (x > y)
+            mp[a] += 3;
         else
-        {
-            lo = vv + 1;
-        }
+            mp[b] += 3;
     }
 
-    cout << ans << endl;
+    for (auto &x : mp)
+    {
+        vp.push_back({x.second, x.first});
+        arr[x.first][0] = x.second;
+    }
+
+    for (auto &x : mp2)
+    {
+        vp2.push_back({x.second, x.first});
+        arr[x.first][1] = x.second;
+    }
+
+    vector<pair<int, pair<int, string>>> ans;
+    for (auto &x : arr)
+    {
+        ans.push_back({x.second[0], {x.second[1], x.first}});
+    }
+
+    sort(reall(ans));
+    
+    cout << ans[0].second.second << ' ' << ans[1].second.second << endl;
 }
 
 int main()
@@ -327,7 +332,7 @@ int main()
     // #endif
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
 
     for (int i = 1; i <= t; i++)
     {

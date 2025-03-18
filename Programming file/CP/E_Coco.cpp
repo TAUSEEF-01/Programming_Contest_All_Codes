@@ -53,6 +53,7 @@ I am THE_BEST_no_1
 
 */
 
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
@@ -162,6 +163,7 @@ here if 4 -> 000000100  is found using bitset; by using the above method we can 
 //__int128(n)*mid*mid*4 <-- Here n*mid*mid*4 is written using --> __int128() which may not support in 64 bit computer
 // but this is used for calculating large int value that can't be processed in i64 or long long
 
+
 /* ################################ Functions ############################### */
 // ########################################################################## //
 
@@ -209,7 +211,9 @@ here if 4 -> 000000100  is found using bitset; by using the above method we can 
 // int minusMod(int a, int b) { return ((a % mod) - (b % mod) + mod) % mod; }
 // int divideMod(int a, int b) { return ((a % mod) * inverse(b) % mod) % mod; }
 
+
 // ll lcm(ll a, ll b) { return (a / __gcd(a, b) * b); }
+
 
 // vl fact(2e5 + 10, 1);
 // int nCr(int n, int r)
@@ -274,45 +278,13 @@ bool comparator(pair<ll, ll> a, pair<ll, ll> b) // sort(vp.begin(), vp.end(), co
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    double a, b, c;
+    // cin >> a >> b >> c;
 
-    if (n == 1)
-    {
-        cout << 1 << endl;
-        return;
-    }
-
-    ll ans = 1e9 + 7;
-    ll lo = 1, hi = 1e9 + 7;
-    while (lo <= hi)
-    {
-        ll v = (lo + hi) / 2;
-        ll vv = v;
-
-        ll tot = 0;
-        ll kk = 1;
-        while (v > 0)
-        {
-            ll val = v / kk;
-            tot += val;
-            if (val == 0)
-                break;
-            kk *= k;
-        }
-
-        if (tot >= n)
-        {
-            ans = min(ans, vv);
-            hi = vv - 1;
-        }
-        else
-        {
-            lo = vv + 1;
-        }
-    }
-
-    cout << ans << endl;
+    cout << ((2 * .5) / (1.0 *(1 + 2 + 1)))   << endl;
+    cout << ((4 * .5) / (1.0 *(2 + 4 + 2) ))  << endl;
+    cout << ((5 * .5) / (1.0 *(1 + 3 + 3) ))  << endl;
+    cout << ((12.4063611138 * .5) / (1.0 *(1.28 + 2.67 + 3.12)))  << endl;
 }
 
 int main()

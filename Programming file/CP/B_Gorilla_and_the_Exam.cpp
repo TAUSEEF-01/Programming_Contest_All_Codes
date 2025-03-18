@@ -1,5 +1,3 @@
-// accepted
-
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -53,98 +51,61 @@ void solve()
     ll n, k;
     cin >> n >> k;
 
-    ll p = ceil((double)log2((double)k));
-
-    if (p > n - 1)
+    vl a(n);
+    map<ll, ll> mp;
+    ll mx = inf, cnt = 0;
+    for (int i = 0; i < n; i++)
     {
-        cout << -1 << endl;
-        return;
-    }
-
-    if (k == 1)
-    {
-        for (int i = 1; i <= n; i++)
-            cout << i << ' ';
-        cout << endl;
-        return;
-    }
-
-    ll val = 0, cnt = 0;
-    vector<int> v(n, n);
-
-    int l = 0, r = n - 1;
-    for (ll i = n - 2; i >= 0; i--)
-    {
-        cnt++;
-        if (i > p)
+        cin >> a[i];
+        mp[a[i]]++;
+        if (mp[a[i]] > cnt)
         {
-            v[l] = cnt;
-            l++;
+            cnt = mp[a[i]];
+            mx = mp[a[i]];
+        }
+        else if (mp[a[i]] == cnt)
+        {
+            if (mx > a[i])
+            {
+                mx = a[i];
+            }
+        }
+        // mx = min(mx, a[i]);
+    }
+
+    map<ll, ll> mp2;
+    vector<pair<ll, ll>> vp;
+    for (auto &x : mp)
+    {
+        vp.push_back({x.second, x.first});
+    }
+    asort(vp);
+
+    int s = vp.size();
+    for (int i = 0; i < s; i++)
+    {
+        if (vp[i].first <= k)
+        {
+            k -= vp[i].first;
             continue;
         }
-
-        val = (1LL << i);
-
-        if (k > val)
-        {
-            k -= val;
-            v[r] = cnt;
-            r--;
-        }
-        else
-        {
-            v[l] = cnt;
-            l++;
-        }
+        mp2[vp[i].second];
     }
+    // for (int i = 0; i < n; i++)
+    // {
+    //     if (a[i] != mx)
+    //     {
+    //         if (k > 0)
+    //         {
+    //             a[i] = mx;
+    //             k--;
+    //         }
+    //     }
+    //     mp2[a[i]]++;
+    // }
 
-    for (int i = 0; i < n; i++)
-        cout << v[i] << ' ';
-    cout << endl;
+    cout << max((int)mp2.size(), 1) << endl;
 }
-
-/*
-3 --> 4
-1 2 3 : 10
-1 3 2 : 10
-2 3 1 : 10
-3 2 1 : 10
-
-*/
-
-/*
-4 --> 8
-1 2 3 4 : 20 -
-1 2 4 3 : 20 -
-1 3 4 2 : 20 -
-1 4 3 2 : 20 -
-2 3 4 1 : 20 -
-2 4 3 1 : 20 -
-3 4 2 1 : 20 -
-4 3 2 1 : 20 -
-
-*/
-
-/*
-5 --> 16
-1 2 3 4 5 : 35 --
-1 2 3 5 4 : 35 --
-1 2 4 5 3 : 35 --
-1 2 5 4 3 : 35 --
-1 3 4 5 2 : 35 --
-1 3 5 4 2 : 35 --
-1 4 5 3 2 : 35 --
-1 5 4 3 2 : 35 --
-2 3 4 5 1 : 35 --
-2 3 5 4 1 : 35 --
-2 4 5 3 1 : 35 --
-2 5 4 3 1 : 35 --
-3 4 5 2 1 : 35 --
-3 5 4 2 1 : 35 --
-4 5 3 2 1 : 35 --
-5 4 3 2 1 : 35 --
-
-*/
 
 int main()
 {
@@ -155,10 +116,10 @@ int main()
     //     freopen("output.txt", "w", stdout);
     // #endif
 
-    int t = 1;
-    cin >> t;
+    int test = 1;
+    cin >> test;
 
-    for (int i = 1; i <= t; i++)
+    for (int i = 1; i <= test; i++)
     {
         // cout << "Case " << i << ": ";
         solve();

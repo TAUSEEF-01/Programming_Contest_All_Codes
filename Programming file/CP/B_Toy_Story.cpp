@@ -127,7 +127,7 @@ typedef priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int
 
 /**/
 const ll mod = 1e9 + 7, inf = 1e18;
-const double pi = acos(-1);
+const double pi = 3.141592653589793238462643383279502884197;
 #define dbg(a) cerr << __LINE__ << ": " << #a << " = " << a << '\n'
 
 /*
@@ -274,45 +274,14 @@ bool comparator(pair<ll, ll> a, pair<ll, ll> b) // sort(vp.begin(), vp.end(), co
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    double r1, r2, h, p;
+    cin >> r1 >> r2 >> h >> p;
 
-    if (n == 1)
-    {
-        cout << 1 << endl;
-        return;
-    }
+    double r3 = (p * 1.0 * ((r1 - r2) / (h * 1.0))) + r2;
+    // dbg(r3);
 
-    ll ans = 1e9 + 7;
-    ll lo = 1, hi = 1e9 + 7;
-    while (lo <= hi)
-    {
-        ll v = (lo + hi) / 2;
-        ll vv = v;
-
-        ll tot = 0;
-        ll kk = 1;
-        while (v > 0)
-        {
-            ll val = v / kk;
-            tot += val;
-            if (val == 0)
-                break;
-            kk *= k;
-        }
-
-        if (tot >= n)
-        {
-            ans = min(ans, vv);
-            hi = vv - 1;
-        }
-        else
-        {
-            lo = vv + 1;
-        }
-    }
-
-    cout << ans << endl;
+    double total = (pi * p / 3.0) * (r3 * r3 + r3 * r2 + r2 * r2);
+    cout << setprecision(9) << fixed << total << endl;
 }
 
 int main()
@@ -327,11 +296,11 @@ int main()
     // #endif
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
 
     for (int i = 1; i <= t; i++)
     {
-        // cout << "Case " << i << ": ";
+        cout << "Case " << i << ": ";
         solve();
     }
 

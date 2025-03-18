@@ -274,43 +274,26 @@ bool comparator(pair<ll, ll> a, pair<ll, ll> b) // sort(vp.begin(), vp.end(), co
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    ll l, r;
+    cin >> l >> r;
 
-    if (n == 1)
+    ll s = 0, val = 1;
+    while (val < l)
     {
-        cout << 1 << endl;
-        return;
+        s++;
+        val *= 2;
     }
 
-    ll ans = 1e9 + 7;
-    ll lo = 1, hi = 1e9 + 7;
-    while (lo <= hi)
+    ll ans = 0, mark = l;
+    while (val <= r)
     {
-        ll v = (lo + hi) / 2;
-        ll vv = v;
-
-        ll tot = 0;
-        ll kk = 1;
-        while (v > 0)
-        {
-            ll val = v / kk;
-            tot += val;
-            if (val == 0)
-                break;
-            kk *= k;
-        }
-
-        if (tot >= n)
-        {
-            ans = min(ans, vv);
-            hi = vv - 1;
-        }
-        else
-        {
-            lo = vv + 1;
-        }
+        ans = (ans + (s * (val - mark))) % mod;
+        mark = val;
+        val *= 2;
+        s++;
     }
+
+    ans = (ans + (s * (r - mark + 1))) % mod;
 
     cout << ans << endl;
 }
@@ -327,7 +310,7 @@ int main()
     // #endif
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
 
     for (int i = 1; i <= t; i++)
     {

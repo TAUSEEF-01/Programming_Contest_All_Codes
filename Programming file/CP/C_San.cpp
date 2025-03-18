@@ -1,3 +1,5 @@
+// accepted
+
 /*
 I am THE_BEST_no_1
 
@@ -274,45 +276,35 @@ bool comparator(pair<ll, ll> a, pair<ll, ll> b) // sort(vp.begin(), vp.end(), co
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    string a;
+    cin >> a;
 
-    if (n == 1)
+    int k;
+    cin >> k;
+
+    int n = a.size();
+    set<string> result;
+
+    ll tot = 1;
+    for (int i = 1; i <= n; i++)
     {
-        cout << 1 << endl;
-        return;
+        tot *= 1LL * i;
     }
 
-    ll ans = 1e9 + 7;
-    ll lo = 1, hi = 1e9 + 7;
-    while (lo <= hi)
+    for (int i = 0; i < tot; i++)
     {
-        ll v = (lo + hi) / 2;
-        ll vv = v;
-
-        ll tot = 0;
-        ll kk = 1;
-        while (v > 0)
-        {
-            ll val = v / kk;
-            tot += val;
-            if (val == 0)
-                break;
-            kk *= k;
-        }
-
-        if (tot >= n)
-        {
-            ans = min(ans, vv);
-            hi = vv - 1;
-        }
-        else
-        {
-            lo = vv + 1;
-        }
+        result.insert(a);
+        // cout << a << endl;
+        next_permutation(all(a));
     }
 
-    cout << ans << endl;
+    vector<string> ans;
+    for (auto &x : result)
+    {
+        ans.push_back(x);
+    }
+
+    cout << ans[k - 1] << endl;
 }
 
 int main()
