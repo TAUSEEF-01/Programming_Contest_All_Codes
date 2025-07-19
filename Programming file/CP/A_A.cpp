@@ -274,118 +274,17 @@ bool comparator(pair<ll, ll> a, pair<ll, ll> b) // sort(vp.begin(), vp.end(), co
 
 void solve()
 {
-    vi a(2), b(2);
-    for (int i = 0; i < 2; i++)
+    int n, m;
+    cin >> n >> m;
+
+    if (n <= m)
     {
-        cin >> a[i];
+        cout << n << endl;
     }
-    for (int i = 0; i < 2; i++)
+    else
     {
-        cin >> b[i];
+        cout << n + n - m << endl;
     }
-
-    // vsort(a);
-    // vsort(b);
-
-    int c1 = 0, c2 = 0, ans = 0;
-    if (a[0] > b[0])
-        c1++;
-    else if (a[0] < b[0])
-        c2++;
-
-    if (a[1] > b[1])
-        c1++;
-    else if (a[1] < b[1])
-        c2++;
-    // for (int i = 0; i < 2; i++)
-    // {
-    //     for (int j = 0; j < 2; j++)
-    //     {
-    //         if (a[i] > b[j])
-    //             c1++;
-    //         else if(a[i] < b[j])
-    //             c2++;
-    //     }
-    // }
-    if (c1 > c2)
-        ans++;
-
-    swap(a[0], a[1]);
-    c1 = c2 = 0;
-    if (a[0] > b[0])
-        c1++;
-    else if (a[0] < b[0])
-        c2++;
-
-    if (a[1] > b[1])
-        c1++;
-    else if (a[1] < b[1])
-        c2++;
-
-    // for (int i = 0; i < 2; i++)
-    // {
-    //     for (int j = 0; j < 2; j++)
-    //     {
-    //         if (a[i] > b[j])
-    //             c1++;
-    //         else if(a[i] < b[j])
-    //             c2++;
-    //     }
-    // }
-    if (c1 > c2)
-        ans++;
-
-    swap(b[0], b[1]);
-    c1 = c2 = 0;
-    if (a[0] > b[0])
-        c1++;
-    else if (a[0] < b[0])
-        c2++;
-
-    if (a[1] > b[1])
-        c1++;
-    else if (a[1] < b[1])
-        c2++;
-
-    // for (int i = 0; i < 2; i++)
-    // {
-    //     for (int j = 0; j < 2; j++)
-    //     {
-    //         if (a[i] > b[j])
-    //             c1++;
-    //         else if(a[i] < b[j])
-    //             c2++;
-    //     }
-    // }
-    if (c1 > c2)
-        ans++;
-
-    swap(a[0], a[1]);
-    c1 = c2 = 0;
-    if (a[0] > b[0])
-        c1++;
-    else if (a[0] < b[0])
-        c2++;
-
-    if (a[1] > b[1])
-        c1++;
-    else if (a[1] < b[1])
-        c2++;
-
-    // for (int i = 0; i < 2; i++)
-    // {
-    //     for (int j = 0; j < 2; j++)
-    //     {
-    //         if (a[i] > b[j])
-    //             c1++;
-    //         else if(a[i] < b[j])
-    //             c2++;
-    //     }
-    // }
-    if (c1 > c2)
-        ans++;
-
-    cout << ans << endl;
 }
 
 int main()

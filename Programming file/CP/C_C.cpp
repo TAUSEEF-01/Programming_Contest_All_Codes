@@ -277,49 +277,68 @@ void solve()
     int n;
     cin >> n;
 
-    vi a[n], sz(n);
-    set<int> st;
+    vector<pair<ll, pair<ll, ll>>> vp, vp2;
+    // vector<ll> x(n), y(n);
     for (int i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
-        sz[i] = x;
-        for (int j = 0; j < x; j++)
-        {
-            int y;
-            cin >> y;
-            a[i].push_back(y);
-            st.insert(y);
-        }
+        ll x, y;
+        cin >> x >> y;
+        vp.push_back({x, {y, i}});
+        vp2.push_back({y, {x, i}});
+        // cin >> x[i] >> y[i];
     }
 
-    int mx = st.size(), ans = 0;
-    for (auto &x : st)
+    vsort(vp);
+    vsort(vp2);
+
+    // vsort(x);
+    // vsort(y);
+
+    vl store, mark(n, 0);
+    int p = min(n, 1000), q = min(n, 1000);
+    map<pair<int, int>, int> mp;
+    for (int i = 0; i < p; i++)
     {
-        set<int> temp;
-        for (int i = 0; i < n; i++)
+        for (int j = n - 1, k = 0; j > i && k < q; j--, k++)
         {
-            int flag = 1;
-            for (int j = 0; j < sz[i]; j++)
+            // cout << vp[i].second.second << ' ' << vp[j].second.second << endl;
+            // if (mark[vp[j].second.second] == 0 && mark[vp[i].second.second] == 0)
+            if (mp[{vp[j].second.second, vp[i].second.second}] == 0)
             {
-                if (a[i][j] == x)
-                {
-                    flag = 0;
-                    break;
-                }
+                store.push_back(max(abs(vp[j].first - vp[i].first), abs(vp[j].second.first - vp[i].second.first)));
+                // mark[vp[j].second.second] = 1;
+                // mark[vp[i].second.second] = 1;
+                mp[{vp[j].second.second, vp[i].second.second}] = 1;
             }
-            if (flag)
+            // if (mark[vp2[j].second.second] == 0 && mark[vp2[i].second.second] == 0)
+            if (mp[{vp2[j].second.second, vp2[i].second.second}] == 0)
             {
-                for (int j = 0; j < sz[i]; j++)
-                {
-                    temp.insert(a[i][j]);
-                }
+                store.push_back(max(abs(vp2[j].first - vp2[i].first), abs(vp2[j].second.first - vp2[i].second.first)));
+                // mark[vp2[j].second.second] = 1;
+                // mark[vp2[i].second.second] = 1;
+                // store.push_back(vp2[j].first - vp2[i].first);
+                mp[{vp2[j].second.second, vp2[i].second.second}] = 1;
             }
         }
-        ans = max(ans, (int)temp.size());
     }
 
-    cout << ans << endl;
+    // for (int i = 0; i < p; i++)
+    // {
+    //     for (int j = n - 1, k = 0; j > i && k < q; j--, k++)
+    //     {
+    //         store.push_back(abs(x[j] - x[i]));
+    //         store.push_back(abs(y[j] - y[i]));
+    //     }
+    // }
+
+    vsort(store);
+    // output(store);
+    cout << store[store.size() - 2] << endl;
+    // ll mx = 0;
+    // mx = max({mx, vp[n - 2].first - vp[0].first, vp[n - 1].first - vp[1].first});
+    // mx = max({mx, vp2[n - 2].first - vp2[0].first, vp2[n - 1].first - vp2[1].first});
+
+    // cout << mx << endl;
 }
 
 int main()
@@ -334,7 +353,7 @@ int main()
     // #endif
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
 
     for (int i = 1; i <= t; i++)
     {

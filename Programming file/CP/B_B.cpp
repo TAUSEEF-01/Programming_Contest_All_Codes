@@ -272,31 +272,43 @@ bool comparator(pair<ll, ll> a, pair<ll, ll> b) // sort(vp.begin(), vp.end(), co
 
 // vector<vector<int>> a(n, vector<int>(n, 0));
 
-bool check(ll x, ll y, ll z)
-{
-    if (x + y > z && x + z > y && y + z > x)
-        return true;
-    return false;
-}
-
 void solve()
 {
-    ll n;
+    int n;
     cin >> n;
 
-    vl a(n);
-    input(a);
-    vsort(a);
+    string a;
+    cin >> a;
 
-    loop(i, 0, n - 2)
+    map<int, int> mp;
+    for (int i = 0; i < n; i++)
     {
-        if (check(a[i], a[i + 1], a[i + 2]))
+        if (a[i] == '1')
         {
-            yes;
-            return;
+            int cnt = 0;
+            for (int j = i; j < n; j++)
+            {
+                cnt++;
+                if (a[j] == '1')
+                {
+                    a[j] = '0';
+                }
+                else
+                {
+                    a[j] = '1';
+                }
+            }
+
+            mp[i + 1] = cnt;
         }
     }
-    no;
+
+    // cout << a << endl;
+    cout << mp.size() << endl;
+    for (auto &x : mp)
+    {
+        cout << x.first << ' ' << x.second << endl;
+    }
 }
 
 int main()
@@ -311,7 +323,7 @@ int main()
     // #endif
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
 
     for (int i = 1; i <= t; i++)
     {
